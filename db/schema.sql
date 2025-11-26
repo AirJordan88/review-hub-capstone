@@ -13,33 +13,33 @@ CREATE TABLE users (
 
 CREATE TABLE item (
   id serial PRIMARY KEY,
-  title text NOT NULL REQUIRED,
-  description text NOT NULL REQUIRED,
-  category text NOT NULL REQUIRED,
+  title text NOT NULL,
+  description text NOT NULL,
+  category text NOT NULL,
   url text NOT NULL
 );
 
 CREATE TABLE reviews (
   id serial PRIMARY KEY,
-  item_id integer NOT NULL REFERENCES item(id) ON DELETE CASCADE REQUIRED,
-  user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE REQUIRED,
-  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5) REQUIRED,
+  item_id integer NOT NULL REFERENCES item(id) ON DELETE CASCADE,
+  user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5),
   comment text NOT NULL
 );
 
 CREATE TABLE review_responses (
   id serial PRIMARY KEY,
-  owner_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE REQUIRED,
-  review_id integer NOT NULL REFERENCES reviews(id) ON DELETE CASCADE REQUIRED,
-  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5) REQUIRED,
+  owner_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  review_id integer NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
+  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5),
   comment text NOT NULL
 );
 
 CREATE TABLE comments (
   id serial PRIMARY KEY,
-  user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE REQUIRED,
-  review_id integer NOT NULL REFERENCES reviews(id) ON DELETE CASCADE REQUIRED,
-  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5) REQUIRED,
+  user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  review_id integer NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
+  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5) ,
   date date NOT NULL,
   comment text NOT NULL
 );
