@@ -11,3 +11,25 @@ export async function createItem(title, description, category, url) {
   } = await db.query(sql, [title, description, category, url]);
   return item;
 }
+
+export async function getAllItems() {
+  const sql = `
+    SELECT *
+    FROM item
+    ORDER BY id;
+  `;
+  const { rows } = await db.query(sql);
+  return rows;
+}
+
+export async function getItemById(id) {
+  const sql = `
+    SELECT *
+    FROM item
+    WHERE id = $1
+  `;
+  const {
+    rows: [item],
+  } = await db.query(sql, [id]);
+  return item || null;
+}
