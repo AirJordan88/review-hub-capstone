@@ -39,7 +39,6 @@ CREATE TABLE comments (
   id serial PRIMARY KEY,
   user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   review_id integer NOT NULL REFERENCES reviews(id) ON DELETE CASCADE,
-  rating integer NOT NULL CHECK (rating BETWEEN 1 AND 5) ,
   date date NOT NULL,
   comment text NOT NULL
 );
