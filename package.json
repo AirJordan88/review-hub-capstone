@@ -20,7 +20,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.14.1",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "react-router-dom": "^7.10.1"
   },
   "engines": {
     "node": ">=22.0.0"
