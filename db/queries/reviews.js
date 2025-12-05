@@ -16,7 +16,9 @@ export async function getReviewsByItem(item_id) {
   const sql = `
   SELECT * FROM reviews WHERE item_id = $1 ORDER BY rating
   `;
-  const { rows: reviews } = await db.query(sql, [item_id]);
+  const {
+    rows: [reviews],
+  } = await db.query(sql, [item_id]);
   return reviews;
 }
 
