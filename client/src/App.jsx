@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import Layout from "./Layout/Layout";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import Item from "./item/Item";
 import ReviewsPage from "../Reviews/ReviewPage.jsx";
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         <Route index element={<p>Home page</p>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/item" element={<Item />} />
         <Route path="/items/:id/reviews" element={<ReviewsPage />} />
       </Route>
     </Routes>
