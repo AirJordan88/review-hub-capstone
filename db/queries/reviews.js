@@ -26,7 +26,7 @@ export async function getReviewsByItem(item_id) {
   return rows;
 }
 
-export async function deleteReview(id) {
+export async function deleteReviewQuery(id) {
   const sql = `
   DELETE FROM reviews WHERE id = $1
   RETURNING *

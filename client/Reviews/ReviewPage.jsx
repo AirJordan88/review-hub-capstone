@@ -37,16 +37,15 @@ export default function ReviewsPage() {
       });
 
       if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text);
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to delete review");
       }
 
-      const result = null;
-      if (response.status !== 204) {
-        result = await response.json();
-      }
+      const deletedReview = await response.json();
 
-      setReviews((prev) => prev.filter((review) => review.id !== Number(id)));
+      setReviews((prev) =>
+        prev.filter((review) => review.id !== deletedReview.id)
+      );
       setDeleteErrors((prev) => ({ ...prev, [id]: null }));
     } catch (error) {
       setDeleteErrors((prev) => ({

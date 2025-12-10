@@ -8,19 +8,22 @@ export default function Navbar() {
   const { token, logout } = useAuth();
   return (
     <header id="navbar">
-      <NavLink id="brand" to="/">
-        <p>ReviewHub</p>
-      </NavLink>
-      <NavLink to="register">
-        <button>Register</button>
-      </NavLink>
-      <nav>
-        {token ? (
-          <button onClick={logout}>Log out</button>
-        ) : (
-          <NavLink to="/login">Log in</NavLink>
-        )}
-      </nav>
+      <p>ReviewHub</p>
+
+      <div id="buttons">
+        <NavLink to="register">
+          <button id="rButton">Register</button>
+        </NavLink>
+        <nav>
+          {token ? (
+            <button onClick={logout}>Log out</button>
+          ) : (
+            <NavLink to="/login">
+              <button>Log in</button>
+            </NavLink>
+          )}
+        </nav>
+      </div>
     </header>
   );
 }
