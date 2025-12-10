@@ -4,6 +4,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Item from "./item/Item";
 import ReviewsPage from "../Reviews/ReviewPage.jsx";
+import ItemDetail from "./item/ItemDetail.jsx";
 
 export default function App() {
   return (
@@ -13,7 +14,8 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/item" element={<Item />} />
-        <Route path="/items/:id/reviews" element={<ReviewsPage />} />
+        <Route path="/item/:id" element={<ItemDetail />} />
+        <Route path="/item/:id/reviews" element={<ReviewsPage />} />
       </Route>
     </Routes>
   );
