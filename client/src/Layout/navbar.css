@@ -1,4 +1,8 @@
 #navbar {
+  border-bottom: 2px solid gray;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,11 +10,19 @@
   z-index: 10;
 }
 
-p {
-  list-style: none;
-  color: rgba(0, 85, 255, 0.824);
+#browse {
+  text-decoration: none;
+  padding-top: 15px;
+  color: black;
+}
+
+#logo {
+  display: flex;
   font-weight: bolder;
   font-size: 1rem;
+  color: rgba(0, 85, 255, 0.824);
+  margin-right: 10px;
+  gap: 10px;
 }
 
 #buttons {
