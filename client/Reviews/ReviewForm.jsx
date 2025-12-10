@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { createReview } from "./Review";
 import { useAuth } from "../src/auth/AuthContext";
+import { useParams } from "react-router";
 
 // form where users can create a new review
-export default function ReviewForm() {
+export default function ReviewForm({ syncReviews }) {
   const { token } = useAuth();
+  const { id } = useParams();
 
   const [error, setError] = useState(null);
 
@@ -15,7 +17,8 @@ export default function ReviewForm() {
     const comment = formData.get("comment");
 
     try {
-      await createReview(token, { rating, comment });
+      await createReview(token, id, { rating, comment });
+      syncReviews();
     } catch (error) {
       setError(error.message);
     }
@@ -26,7 +29,7 @@ export default function ReviewForm() {
       <h2>Add a new review</h2>
       <form action={tryCreateReview}>
         <label>
-          Rating <input type="text" name="rating" />
+          Rating <input type="text" name="rating" min="1" max="5" />
         </label>
         <label>
           {" "}

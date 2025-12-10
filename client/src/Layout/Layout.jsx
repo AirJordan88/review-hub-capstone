@@ -1,11 +1,12 @@
-import { Outlet } from "react-router";
+import { Outlet, useParams } from "react-router";
 
 import Navbar from "./Navbar";
 
 export default function Layout() {
+  const { id } = useParams;
   return (
     <>
-      <Navbar />
+      <Navbar id={id} />
       <main>
         <Outlet />
       </main>

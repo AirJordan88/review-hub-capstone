@@ -5,7 +5,7 @@ export async function getReviews(id) {
   try {
     const response = await fetch(`${API}/items/${id}/reviews`);
     const result = await response.json();
-    return result.reviews || [];
+    return Array.isArray(result) ? result : [];
   } catch (error) {
     console.error("Error fetching reviews", error);
     return [];
@@ -19,19 +19,19 @@ export async function createReview(token, id, review) {
     throw Error("You must be signed in to create an activity.");
   }
 
-  console.log(API);
-
   const response = await fetch(`${API}/items/${id}/reviews`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer" + token,
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(review),
   });
 
   if (!response.ok) {
-    const result = await response.json();
+    const result = await response.text();
     throw Error(result.message);
   }
+
+  return response.json();
 }

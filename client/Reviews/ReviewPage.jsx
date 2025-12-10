@@ -11,23 +11,19 @@ export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
   const [deleteErrors, setDeleteErrors] = useState({});
   const { token } = useAuth();
-
   const { id } = useParams();
+
+  const syncReviews = async () => {
+    if (!id) return;
+    const data = await getReviews(id);
+    setReviews(data);
+  };
 
   useEffect(() => {
     if (id) {
       syncReviews();
     }
   }, [id]);
-
-  const syncReviews = async () => {
-    const data = await getReviews(id);
-    setReviews(data);
-  };
-
-  useEffect(() => {
-    syncReviews();
-  }, []);
 
   // deletes an review from the API
   async function deleteReview(id) {
@@ -41,16 +37,15 @@ export default function ReviewsPage() {
       });
 
       if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text);
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to delete review");
       }
 
-      const result = null;
-      if (response.status !== 204) {
-        result = await response.json();
-      }
+      const deletedReview = await response.json();
 
-      setReviews((prev) => prev.filter((review) => review.id !== Number(id)));
+      setReviews((prev) =>
+        prev.filter((review) => review.id !== deletedReview.id)
+      );
       setDeleteErrors((prev) => ({ ...prev, [id]: null }));
     } catch (error) {
       setDeleteErrors((prev) => ({
@@ -65,11 +60,26 @@ export default function ReviewsPage() {
     }
   }
 
-  console.log("Fetched reviews:", reviews);
+  // got this from google ai
+  function calculateAverageRating(reviews) {
+    if (!reviews || reviews.length === 0) return 0;
+
+    const total = reviews.reduce(
+      (sum, review) => sum + Number(review.rating),
+      0
+    );
+    return (total / reviews.length).toFixed(2); // two decimal places
+  }
+
+  const averageRating = calculateAverageRating(reviews);
 
   return (
     <>
       <h1>Reviews</h1>
+      <p>
+        <strong>Average Rating:</strong>&nbsp;
+        {averageRating} ⭐
+      </p>
       <ReviewList
         reviews={reviews}
         token={token}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { apiRequest } from "../api/client";
+import ReviewsPage from "../../Reviews/ReviewPage";
 
 export default function ItemDetail() {
   const { id } = useParams(); // read :id from the URL
@@ -43,6 +44,7 @@ export default function ItemDetail() {
           {item.url}
         </a>
       </p>
+      <ReviewsPage />
     </div>
   );
 }

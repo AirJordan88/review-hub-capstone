@@ -8,12 +8,14 @@ export default function ReviewList({
     <ul>
       {reviews.map((review) => (
         <li key={review.id}>
-          {review.name}
+          <strong>Rating:</strong> {"⭐".repeat(review.rating)}
+          <br />
+          <strong>Comment:</strong> {review.comment}
           {token && (
-            <button onClick={() => deleteReview(reviews.id)}>Delete</button>
+            <button onClick={() => deleteReview(review.id)}>Delete</button>
           )}
           {deleteErrors[review.id] && (
-            <p style={{ color: "red" }}>{deleteReview[reviews.id]}</p>
+            <p style={{ color: "red" }}>{deleteReview[review.id]}</p>
           )}
         </li>
       ))}
