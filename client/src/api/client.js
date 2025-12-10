@@ -1,6 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
 export async function apiRequest(path, options = {}) {
+  // Safely read token from localStorage
   const token = localStorage.getItem("token");
 
   const headers = {
@@ -8,7 +9,8 @@ export async function apiRequest(path, options = {}) {
     ...(options.headers || {}),
   };
 
-  if (token) {
+  // ✅ Defensive check: only attach token if it's actually valid
+  if (token && token !== "null" && token !== "undefined") {
     headers.Authorization = `Bearer ${token}`;
   }
 
@@ -23,9 +25,10 @@ export async function apiRequest(path, options = {}) {
   try {
     data = JSON.parse(text);
   } catch {
-    data = text; // for token responses from /users/login
+    data = text; // for token responses or non-JSON errors
   }
 
+  // ✅ Centralized error handling
   if (!res.ok) {
     throw new Error(data || "Request failed");
   }

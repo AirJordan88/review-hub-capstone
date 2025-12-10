@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { apiRequest } from "../api/client";
 
 export default function Item() {
@@ -30,10 +31,14 @@ export default function Item() {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <strong>{item.title}</strong> — {item.category}
+            {/* Link to the details page for this item */}
+            <Link to={`/item/${item.id}`}>
+              <strong>{item.title}</strong>
+            </Link>{" "}
+            — {item.category}
             <p>{item.description}</p>
-            <a href={item.url} target="_blank">
-              View
+            <a href={item.url} target="_blank" rel="noreferrer">
+              External link
             </a>
           </li>
         ))}
