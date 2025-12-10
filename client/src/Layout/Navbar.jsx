@@ -2,12 +2,17 @@ import { NavLink } from "react-router";
 
 import { useAuth } from "../auth/AuthContext";
 
+import "./navbar.css";
+
 export default function Navbar() {
   const { token, logout } = useAuth();
   return (
     <header id="navbar">
       <NavLink id="brand" to="/">
-        <p>Frontend Template</p>
+        <p>ReviewHub</p>
+      </NavLink>
+      <NavLink to="register">
+        <button>Register</button>
       </NavLink>
       <nav>
         {token ? (
@@ -15,7 +20,6 @@ export default function Navbar() {
         ) : (
           <NavLink to="/login">Log in</NavLink>
         )}
-        <NavLink to="/items/:id/reviews">Reviews</NavLink>
       </nav>
     </header>
   );

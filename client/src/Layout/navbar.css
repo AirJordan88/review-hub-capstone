@@ -1,0 +1,12 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  z-index: 10;
+}
+
+button {
+  background-color: rgba(0, 85, 255, 0.824);
+  color: white;
+  border-radius: 5px white;
+}
