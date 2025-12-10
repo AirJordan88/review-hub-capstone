@@ -15,6 +15,7 @@ export default function Navbar() {
         ) : (
           <NavLink to="/login">Log in</NavLink>
         )}
+        <NavLink to="/items/:id/reviews">Reviews</NavLink>
       </nav>
     </header>
   );
