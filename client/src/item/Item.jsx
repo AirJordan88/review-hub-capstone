@@ -7,6 +7,8 @@ export default function Item() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     async function loadItems() {
       try {
@@ -28,6 +30,11 @@ export default function Item() {
   return (
     <div>
       <h2>Item List</h2>
+      {token && token !== "null" && token !== "undefined" && (
+        <p>
+          <Link to="/item/new">+ Create New Item</Link>
+        </p>
+      )}
       <ul>
         {items.map((item) => (
           <li key={item.id}>

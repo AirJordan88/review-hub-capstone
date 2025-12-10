@@ -1,14 +1,20 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const API = import.meta.env.VITE_API;
+const API = import.meta.env.VITE_API ?? "http://localhost:3000";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(sessionStorage.getItem("token"));
+  // 🔐 Read initial token from localStorage
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
+  // 🔄 Keep localStorage in sync with token state
   useEffect(() => {
-    if (token) sessionStorage.setItem("token", token);
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
   }, [token]);
 
   const register = async (credentials) => {
@@ -17,9 +23,11 @@ export function AuthProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     });
+
     const result = await response.text();
     if (!response.ok) throw Error(result);
-    setToken(result);
+
+    setToken(result); // will also update localStorage
   };
 
   const login = async (credentials) => {
@@ -28,14 +36,16 @@ export function AuthProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
     });
+
     const result = await response.text();
     if (!response.ok) throw Error(result);
-    setToken(result);
+
+    setToken(result); // will also update localStorage
   };
 
   const logout = () => {
     setToken(null);
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
   };
 
   const value = { token, register, login, logout };
