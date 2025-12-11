@@ -5,6 +5,7 @@ import ReviewsPage from "../../Reviews/ReviewPage";
 import { useAuth } from "../auth/AuthContext";
 
 import "../../Reviews/review.css";
+import "./itemDetail.css"; // ✅ import the detail styles
 
 export default function ItemDetail() {
   const { token } = useAuth();
@@ -35,7 +36,7 @@ export default function ItemDetail() {
   const isLoggedIn = !!token;
 
   return (
-    <div>
+    <div id="item-detail-page">
       {!isLoggedIn && (
         <div id="overlay">
           <div id="box-styles">
@@ -55,21 +56,35 @@ export default function ItemDetail() {
           </div>
         </div>
       )}
-      <Link to="/item">← Back to all items</Link>
-      <h2>{item.title}</h2>
-      <p>
-        <strong>Category:</strong> {item.category}
-      </p>
-      <p>
-        <strong>Description:</strong> {item.description}
-      </p>
-      <p>
-        <strong>Link:</strong>{" "}
-        <a href={item.url} target="_blank" rel="noreferrer">
-          {item.url}
-        </a>
-      </p>
-      <ReviewsPage />
+
+      <div id="item-detail-card">
+        <Link to="/item">← Back to all items</Link>
+
+        <h2 id="item-detail-title">{item.title}</h2>
+
+        <p id="item-detail-category">
+          <strong>Category:</strong> {item.category}
+        </p>
+
+        <p id="item-detail-description">
+          <strong>Description:</strong> {item.description}
+        </p>
+
+        <p>
+          <strong>Link:</strong>{" "}
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noreferrer"
+            className="detail-external-link"
+          >
+            {item.url}
+          </a>
+        </p>
+
+        {/* Reviews are still rendered as before */}
+        <ReviewsPage />
+      </div>
     </div>
   );
 }

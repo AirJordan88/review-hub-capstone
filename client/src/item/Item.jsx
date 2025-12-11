@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { apiRequest } from "../api/client";
+import "./item.css"; // ✅ import the styles
 
 export default function Item() {
   const [items, setItems] = useState([]);
@@ -28,25 +29,32 @@ export default function Item() {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
+    <div id="item-page">
       <h2>Item List</h2>
+
       {token && token !== "null" && token !== "undefined" && (
         <p>
-          <Link to="/item/new">+ Create New Item</Link>
+          <Link id="create-item-btn" to="/item/new">
+            + Create New Item
+          </Link>
         </p>
       )}
-      <ul>
+
+      <ul id="item-list">
         {items.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className="item-card">
             {/* Link to the details page for this item */}
-            <Link to={`/item/${item.id}`}>
+            <Link className="title-link" to={`/item/${item.id}`}>
               <strong>{item.title}</strong>
             </Link>{" "}
-            — {item.category}
-            <p>{item.description}</p>
-            <a href={item.url} target="_blank" rel="noreferrer">
-              External link
-            </a>
+            <p className="item-category">{item.category}</p>
+            <p className="item-description">{item.description}</p>
+            <a
+              className="external-link"
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+            ></a>
           </li>
         ))}
       </ul>

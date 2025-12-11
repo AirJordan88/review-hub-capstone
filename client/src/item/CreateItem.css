@@ -1,0 +1,68 @@
+#create-item-page {
+  padding: 80px 200px;
+  min-height: 100vh;
+  background: #fafafa;
+  font-family: Roboto, sans-serif;
+}
+
+#create-item-card {
+  background: #ffffff;
+  padding: 30px;
+  max-width: 600px;
+  border-radius: 12px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#create-item-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+/* Form layout */
+#create-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#create-item-form input,
+#create-item-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #c1c1c1;
+  border-radius: 8px;
+  font-family: Roboto, sans-serif;
+  resize: vertical;
+}
+
+/* Button */
+#create-item-btn {
+  padding: 12px 20px;
+  background: #1f8cf9;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+#create-item-btn:hover:not(:disabled) {
+  background: #0d6ed8;
+}
+
+#create-item-btn:disabled {
+  background: #9cc9f7;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.create-item-error {
+  color: red;
+  margin-bottom: 10px;
+}

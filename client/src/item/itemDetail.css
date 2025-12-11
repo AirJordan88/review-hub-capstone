@@ -1,0 +1,43 @@
+#item-detail-page {
+  padding: 80px 200px;
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+}
+
+/* Main box */
+#item-detail-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 700px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#item-detail-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#item-detail-category {
+  font-size: 16px;
+  color: #5f5f5f;
+  margin-bottom: 20px;
+}
+
+#item-detail-description {
+  font-size: 18px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.detail-external-link {
+  color: #1f8cf9;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.detail-external-link:hover {
+  text-decoration: underline;
+}

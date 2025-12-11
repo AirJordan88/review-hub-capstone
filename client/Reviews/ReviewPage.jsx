@@ -3,7 +3,7 @@ import { getReviews } from "./Review";
 import { useAuth } from "../src/auth/AuthContext";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 
 const API = import.meta.env.VITE_API;
 
