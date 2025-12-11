@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "./AuthContext";
 
+import "./auth.css";
+
 /** A form that allows users to log into an existing account. */
 export default function Login() {
   const { login } = useAuth();
@@ -26,25 +28,30 @@ export default function Login() {
 
   return (
     <>
-      <h1>Log in to your account</h1>
+      <div>
+        <div id="login-box">
+          <h1>Log in to your account</h1>
+          <form onSubmit={onLogin}>
+            <label>
+              Username
+              <input type="username" name="username" required />
+            </label>
 
-      <form onSubmit={onLogin}>
-        <label>
-          Username
-          <input type="username" name="username" required />
-        </label>
+            <label>
+              Password
+              <input type="password" name="password" required />
+            </label>
 
-        <label>
-          Password
-          <input type="password" name="password" required />
-        </label>
+            <button id="login-btn" type="submit">
+              Login
+            </button>
 
-        <button type="submit">Login</button>
+            {error && <output>{error}</output>}
+          </form>
 
-        {error && <output>{error}</output>}
-      </form>
-
-      <Link to="/register">Need an account? Register here.</Link>
+          <Link to="/register">Need an account? Register here.</Link>
+        </div>
+      </div>
     </>
   );
 }
