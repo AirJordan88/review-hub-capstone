@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { apiRequest } from "../api/client";
+import "./CreateItem.css"; // <-- ADD THIS
 
 export default function CreateItem() {
   const navigate = useNavigate();
@@ -13,7 +14,6 @@ export default function CreateItem() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ✅ Token protection — MUST be inside the function
   const token = localStorage.getItem("token");
 
   if (!token || token === "null" || token === "undefined") {
@@ -36,7 +36,6 @@ export default function CreateItem() {
         }),
       });
 
-      // ✅ Redirect to the new item's detail page
       navigate(`/item/${newItem.id}`);
     } catch (err) {
       setError(err.message);
@@ -46,44 +45,47 @@ export default function CreateItem() {
   }
 
   return (
-    <div>
-      <h2>Create New Item</h2>
+    <div id="create-item-page">
+      <div id="create-item-card">
+        <h2 id="create-item-title">Create New Item</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="create-item-error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <form id="create-item-form" onSubmit={handleSubmit}>
+          <input
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
 
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
+          <textarea
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            rows={4}
+          />
 
-        <input
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          required
-        />
+          <input
+            placeholder="Category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          />
 
-        <input
-          placeholder="External URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
+          <input
+            placeholder="External URL"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create Item"}
-        </button>
-      </form>
+          <button id="create-item-btn" type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Create Item"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,76 @@
+/* Page container */
+#item-page {
+  padding: 80px 200px;
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+}
+
+/* Title */
+#item-page h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+/* Create Item button */
+#create-item-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1f8cf9;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+/* Item list */
+#item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item card */
+.item-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.item-card a.title-link {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f8cf9;
+  text-decoration: none;
+}
+
+.item-card a.title-link:hover {
+  text-decoration: underline;
+}
+
+.item-category {
+  color: #5f5f5f;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.item-description {
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.external-link {
+  font-size: 14px;
+  color: #1f8cf9;
+  text-decoration: none;
+}
+
+.external-link:hover {
+  text-decoration: underline;
+}
