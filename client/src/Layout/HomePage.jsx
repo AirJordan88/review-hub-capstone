@@ -15,7 +15,7 @@ export default function HomePage() {
         <Link id="content" to="/item">
           Browse Content &rarr;
         </Link>
-        <Link id="register" to="/register">
+        <Link id="sign-up" to="/register">
           Join ReviewHub
         </Link>
       </div>

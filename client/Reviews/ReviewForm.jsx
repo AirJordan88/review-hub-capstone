@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createReview } from "./Review";
 import { useAuth } from "../src/auth/AuthContext";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 
 // form where users can create a new review
 export default function ReviewForm({ syncReviews }) {

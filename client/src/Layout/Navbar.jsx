@@ -9,8 +9,10 @@ export default function Navbar() {
   return (
     <header id="navbar">
       <nav>
-        <div id="logo">
-          <p>ReviewHub</p>
+        <div className="logo">
+          <NavLink to="/">
+            <p>ReviewHub</p>
+          </NavLink>
           <NavLink id="browse" to="/item">
             Browse
           </NavLink>

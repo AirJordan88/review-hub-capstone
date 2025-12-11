@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { apiRequest } from "../api/client";
 import ReviewsPage from "../../Reviews/ReviewPage";
+import { useAuth } from "../auth/AuthContext";
+
+import "../../Reviews/review.css";
 
 export default function ItemDetail() {
+  const { token } = useAuth();
   const { id } = useParams(); // read :id from the URL
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -28,8 +32,29 @@ export default function ItemDetail() {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   if (!item) return <p>Item not found.</p>;
 
+  const isLoggedIn = !!token;
+
   return (
     <div>
+      {!isLoggedIn && (
+        <div id="overlay">
+          <div id="box-styles">
+            <h2>Unlock Full ReviewHub Benefits</h2>
+            <p>
+              Sign in or create an account to link this review to your profile
+              and track your contributions.
+            </p>
+            <div>
+              <Link id="overlay-btn" to="/login">
+                Sign Up
+              </Link>
+              <Link id="overlay-btn" to="/register">
+                Create Account
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       <Link to="/item">← Back to all items</Link>
       <h2>{item.title}</h2>
       <p>
