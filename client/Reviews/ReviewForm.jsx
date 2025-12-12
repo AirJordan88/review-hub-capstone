@@ -6,14 +6,15 @@ import { useParams, Link } from "react-router";
 import "./review.css";
 
 // form where users can create a new review
-export default function ReviewForm({ syncReviews }) {
+export default function ReviewForm({ handleNewReview }) {
   const { token } = useAuth();
   const { id } = useParams();
   const [showOops, setShowOops] = useState(false);
 
   const [error, setError] = useState(null);
 
-  const tryCreateReview = async (formData) => {
+  const tryCreateReview = async (e) => {
+    e.preventDefault();
     setError(null);
 
     if (!token) {
@@ -21,12 +22,17 @@ export default function ReviewForm({ syncReviews }) {
       return;
     }
 
+    const formData = new FormData(e.target);
     const rating = formData.get("rating");
     const comment = formData.get("comment");
 
     try {
-      await createReview(token, id, { rating, comment });
-      syncReviews();
+      const createdReview = await createReview(token, id, { rating, comment });
+
+      //update state with new review
+      handleNewReview(createdReview);
+
+      e.target.reset();
     } catch (error) {
       setError(error.message);
     }
@@ -59,7 +65,7 @@ export default function ReviewForm({ syncReviews }) {
         )}
         <div>
           <h2>Add a new review</h2>
-          <form action={tryCreateReview}>
+          <form onSubmit={tryCreateReview}>
             <label>
               Rating <input type="text" name="rating" min="1" max="5" />
             </label>

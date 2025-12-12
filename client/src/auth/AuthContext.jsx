@@ -11,19 +11,20 @@ export function AuthProvider({ children }) {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  // 🔄 Keep localStorage in sync with token state
+  // Keep localStorage in sync with token state
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
     } else {
       localStorage.removeItem("token");
     }
-  }, [token]);
 
-  useEffect(() => {
-    if (user) localStorage.setItem("user", JSON.stringify(user));
-    else localStorage.removeItem("user");
-  }, [user]);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [token, user]);
 
   const register = async (credentials) => {
     const response = await fetch(API + "/users/register", {
