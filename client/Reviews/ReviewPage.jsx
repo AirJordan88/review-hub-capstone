@@ -13,16 +13,18 @@ export default function ReviewsPage() {
   const { token, user } = useAuth();
   const { id } = useParams();
 
-  const syncReviews = async () => {
-    if (!id) return;
-    const data = await getReviews(id);
-    setReviews(data);
-  };
+  console.log("Item ID from route:", id);
 
+  // initial fetch
   useEffect(() => {
-    if (id) {
-      syncReviews();
-    }
+    if (!id) return;
+
+    const fetchReviews = async () => {
+      const data = await getReviews(id);
+      setReviews(data);
+    };
+
+    fetchReviews();
   }, [id]);
 
   // deletes an review from the API
@@ -60,6 +62,14 @@ export default function ReviewsPage() {
     }
   }
 
+  // add a new review and update state
+  const handleNewReview = (newReview) => {
+    setReviews((prev) => [
+      ...prev.filter((r) => r.id !== newReview.id),
+      newReview,
+    ]);
+  };
+
   // got this from google ai
   function calculateAverageRating(reviews) {
     if (!reviews || reviews.length === 0) return 0;
@@ -93,7 +103,7 @@ export default function ReviewsPage() {
             deleteErrors={deleteErrors}
           />
           <div>
-            <ReviewForm syncReviews={syncReviews} />
+            <ReviewForm handleNewReview={handleNewReview} />
           </div>
         </div>
       </div>

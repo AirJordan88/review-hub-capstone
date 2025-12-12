@@ -29,7 +29,7 @@ export async function createReview(token, id, review) {
   });
 
   if (!response.ok) {
-    const result = await response.text();
+    const result = await response.json();
     throw Error(result.message);
   }
 
