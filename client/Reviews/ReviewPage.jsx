@@ -3,14 +3,14 @@ import { getReviews } from "./Review";
 import { useAuth } from "../src/auth/AuthContext";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 
 const API = import.meta.env.VITE_API;
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
   const [deleteErrors, setDeleteErrors] = useState({});
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const { id } = useParams();
 
   const syncReviews = async () => {
@@ -75,18 +75,28 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <h1>Reviews</h1>
-      <p>
-        <strong>Average Rating:</strong>&nbsp;
-        {averageRating} ⭐
-      </p>
-      <ReviewList
-        reviews={reviews}
-        token={token}
-        deleteReview={deleteReview}
-        deleteErrors={deleteErrors}
-      />
-      <ReviewForm syncReviews={syncReviews} />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ width: "50vw" }}>
+          <div>
+            <h1>Reviews</h1>
+            <p>
+              <strong>Average Rating:</strong>&nbsp;
+              {averageRating} ⭐
+            </p>
+          </div>
+
+          <ReviewList
+            reviews={reviews}
+            token={token}
+            user={user}
+            deleteReview={deleteReview}
+            deleteErrors={deleteErrors}
+          />
+          <div>
+            <ReviewForm syncReviews={syncReviews} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
