@@ -24,6 +24,7 @@ app.get("/", (req, res) => res.send("Hello, World!"));
 app.use("/users", usersRouter);
 app.use("/items", itemsRouter); // <-- ADD THIS
 app.use("/comments", commentsRouter);
+
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {
   console.error(err);
