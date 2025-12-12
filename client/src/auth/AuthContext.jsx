@@ -7,6 +7,9 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   // 🔐 Read initial token from localStorage
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
 
   // 🔄 Keep localStorage in sync with token state
   useEffect(() => {
@@ -17,6 +20,11 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (user) localStorage.setItem("user", JSON.stringify(user));
+    else localStorage.removeItem("user");
+  }, [user]);
+
   const register = async (credentials) => {
     const response = await fetch(API + "/users/register", {
       method: "POST",
@@ -24,10 +32,14 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(credentials),
     });
 
-    const result = await response.text();
-    if (!response.ok) throw Error(result);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Registration failed");
 
-    setToken(result); // will also update localStorage
+    setUser(data.user);
+    setToken(data.token);
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
   };
 
   const login = async (credentials) => {
@@ -37,18 +49,23 @@ export function AuthProvider({ children }) {
       body: JSON.stringify(credentials),
     });
 
-    const result = await response.text();
-    if (!response.ok) throw Error(result);
+    const data = await response.json();
+    if (!response.ok) throw Error(data.error || "login failed");
 
-    setToken(result); // will also update localStorage
+    setUser(data.user);
+    setToken(data.token);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
   };
 
   const logout = () => {
     setToken(null);
+    setUser(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
-  const value = { token, register, login, logout };
+  const value = { token, user, register, login, logout };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
