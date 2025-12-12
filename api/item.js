@@ -6,7 +6,7 @@ import requireUser from "#middleware/requireUser";
 
 const router = express.Router();
 
-// GET /items - Returns all items (things that can be reviewed).
+// Returns all items (things that can be reviewed).
 router.get("/", async (req, res, next) => {
   try {
     const items = await getAllItems();
@@ -16,12 +16,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET /items/:id - Returns a single item by its id.
+// Returns a single item by its id.
 router.get("/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
 
-    // Must be a positive integer
     if (!Number.isInteger(id) || id <= 0) {
       return res.status(400).send("Item id must be a positive integer.");
     }
