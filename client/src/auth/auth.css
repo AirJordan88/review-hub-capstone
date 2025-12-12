@@ -1,0 +1,51 @@
+/* Forms (register & login) */
+#register-box,
+#login-box {
+  background: #fff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 200px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+/* Buttons */
+#register-btn,
+#login-btn {
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Labels */
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+  #register-box,
+  #login-box {
+    max-width: 400px;
+    padding: 2.5rem;
+  }
+}
+
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
+  #register-box,
+  #login-box {
+    max-width: 500px;
+  }
+}

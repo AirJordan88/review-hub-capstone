@@ -1,0 +1,84 @@
+main {
+  padding-left: 200px;
+  padding-bottom: 208px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  align-content: center;
+  background: #fafafaff;
+}
+
+#home {
+  display: flex;
+  background: #fafafaff;
+  border-radius: 0px 0px 0px 0px;
+  align-items: center;
+}
+
+#discover {
+  top: 379px;
+  left: 208px;
+  width: 488px;
+  font-family: Roboto;
+
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  color: #5f5f5fff;
+}
+
+h1 {
+  top: 174px;
+  left: 208px;
+  width: 488px;
+  font-family: Roboto; /* Body */
+  font-size: 48px;
+  line-height: 60px;
+  font-weight: 700;
+  color: #1a1a1aff;
+}
+
+img {
+  top: 180px;
+  left: 700px;
+  width: 488px;
+  height: 400px;
+  border-radius: 12px;
+}
+
+#content {
+  width: 150px;
+  padding: 10px 20px;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #ffffffff; /* white */
+  background: #1f8cf9ff;
+  border-radius: 10px;
+  border-width: 0px;
+  border-color: #000000ff; /* black */
+  border-style: solid;
+  gap: 16px;
+  text-decoration: none;
+}
+
+#sign-up {
+  width: 150px;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #1a1a1aff;
+  background: #fafafaff;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: #c1c1c1ff;
+  border-style: solid;
+  text-decoration: none;
+}
