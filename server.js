@@ -1,5 +1,5 @@
 import app from "#app";
-import db from "#db/client";
+import db from "#db/client.js";
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -9,6 +9,6 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
 
-import commentRoutes from "#api/comments/index";
+import commentRoutes from "#api/comments/index.js";
 
 app.use("/api/comments", commentRoutes);

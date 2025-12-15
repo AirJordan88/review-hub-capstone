@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router";
 import { apiRequest } from "../api/client";
 import ReviewsPage from "../../Reviews/ReviewPage";
 
-import "./itemDetail.css"; // ✅ import the detail styles
+import "./itemDetail.css";
 
 export default function ItemDetail() {
   const { id } = useParams(); // read :id from the URL

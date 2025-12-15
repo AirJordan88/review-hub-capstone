@@ -1,5 +1,5 @@
-import db from "#db/client";
-import { createUser } from "#db/queries/users";
+import db from "#db/client.js";
+import { createUser } from "#db/queries/users.js";
 import { createReviews } from "./queries/reviews.js";
 import { createItem } from "./queries/item.js";
 import { createComment } from "./queries/comment.js";

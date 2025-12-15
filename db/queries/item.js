@@ -1,4 +1,4 @@
-import db from "#db/client";
+import db from "#db/client.js";
 
 export async function createItem(title, description, category, url) {
   const sql = `

@@ -1,4 +1,4 @@
-import db from "#db/client";
+import db from "#db/client.js";
 import bcrypt from "bcrypt";
 
 export async function createUser(username, password) {

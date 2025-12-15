@@ -2,13 +2,17 @@
   "name": "review_hub",
   "type": "module",
   "imports": {
-    "#*": "./*.js"
+    "#app": "./app.js",
+    "#api/*": "./api/*",
+    "#middleware/*": "./middleware/*",
+    "#db/*": "./db/*",
+    "#utils/*": "./utils/*"
   },
   "scripts": {
-    "start": "node --env-file=.env server.js",
-    "dev": "node --watch --env-file=.env server.js",
+    "start": "vite-node --env-file=.env server.js",
+    "dev": "vite-node --watch --env-file=.env server.js",
     "test": "vitest",
-    "db:schema": "psql -d review_hub -f db/schema.sql",
+    "db:schema": "psql -U postgres -d review_hub -f db/schema.sql",
     "db:seed": "node --env-file=.env db/seed.js",
     "db:reset": "npm run db:schema && npm run db:seed"
   },
@@ -28,6 +32,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.1",
+    "vite-node": "^5.2.0",
     "vitest": "^3.1.3"
   }
 }
