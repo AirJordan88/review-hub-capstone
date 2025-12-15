@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { apiRequest } from "../api/client";
-import "./item.css"; // ✅ import the styles
+import ItemSearch from "./ItemSearch";
+import "./item.css";
 
 export default function Item() {
   const [items, setItems] = useState([]);
+  const [allItems, setAllItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -15,6 +17,7 @@ export default function Item() {
       try {
         const data = await apiRequest("/items");
         setItems(data);
+        setAllItems(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -30,7 +33,9 @@ export default function Item() {
 
   return (
     <div id="item-page">
-      <h2>Item List</h2>
+      <h2>Welcome to ReviewHub</h2>
+
+      <ItemSearch setItems={setItems} allItems={allItems} />
 
       {token && token !== "null" && token !== "undefined" && (
         <p>
@@ -42,19 +47,26 @@ export default function Item() {
 
       <ul id="item-list">
         {items.map((item) => (
-          <li key={item.id} className="item-card">
-            {/* Link to the details page for this item */}
-            <Link className="title-link" to={`/item/${item.id}`}>
-              <strong>{item.title}</strong>
-            </Link>{" "}
-            <p className="item-category">{item.category}</p>
-            <p className="item-description">{item.description}</p>
-            <a
-              className="external-link"
-              href={item.url}
-              target="_blank"
-              rel="noreferrer"
-            ></a>
+          <li key={item.id}>
+            {/* ✅ Wrap the whole card in the Link */}
+            <Link to={`/item/${item.id}`} className="item-card-link">
+              <div className="item-card">
+                <strong className="item-title">{item.title}</strong>
+                <p className="item-category">{item.category}</p>
+                <p className="item-description">{item.description}</p>
+
+                {/* Optional: make this NOT navigate away when clicked */}
+                <a
+                  className="external-link"
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {item.url}
+                </a>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

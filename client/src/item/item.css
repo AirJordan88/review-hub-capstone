@@ -1,20 +1,22 @@
-/* Page container */
+/* =========================
+   Page container
+   ========================= */
 #item-page {
-  padding: 80px 200px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
   background: #fafafa;
   min-height: 100vh;
   font-family: Roboto, sans-serif;
 }
 
-/* Title */
 #item-page h2 {
-  font-size: 36px;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-size: 42px;
+  font-weight: 900;
+  color: #234475;
   margin-bottom: 20px;
 }
 
-/* Create Item button */
 #create-item-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -27,31 +29,49 @@
   margin-bottom: 30px;
 }
 
-/* Item list */
+/* =========================
+   Item list + cards
+   ========================= */
 #item-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Item card */
+/* Link wrapping entire card */
+.item-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit; /* prevent blue link text */
+}
+
 .item-card {
   background: #ffffff;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.item-card a.title-link {
+@media (hover: hover) and (pointer: fine) {
+  .item-card:hover {
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    box-shadow: 0 12px 28px rgba(31, 140, 249, 0.18);
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================
+   Card content
+   ========================= */
+.item-title {
   font-size: 22px;
   font-weight: 600;
   color: #1f8cf9;
-  text-decoration: none;
-}
-
-.item-card a.title-link:hover {
-  text-decoration: underline;
+  margin-bottom: 6px;
 }
 
 .item-category {
@@ -62,15 +82,103 @@
 
 .item-description {
   color: #1a1a1a;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
+/* =========================
+   External link (subtle, clean)
+   ========================= */
 .external-link {
   font-size: 14px;
   color: #1f8cf9;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Add subtle arrow */
+.external-link::after {
+  content: "→";
+  font-size: 14px;
+  transition: transform 0.15s ease;
+}
+
+/* Tiny motion on hover */
+.external-link:hover::after {
+  transform: translateX(3px);
 }
 
 .external-link:hover {
   text-decoration: underline;
+}
+
+/* =========================
+   Search bar
+   ========================= */
+.catalog-search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.catalog-search input {
+  width: 320px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.catalog-search input:focus {
+  border-color: #444;
+}
+
+.catalog-search button {
+  padding: 12px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #222;
+  color: white;
+}
+
+.catalog-search button:hover {
+  background-color: #000;
+}
+
+/* =========================
+   Search messages + reset
+   ========================= */
+.no-results-message {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+.back-to-books-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.back-to-books-container button {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #1f8cf9;
+  color: white;
+  cursor: pointer;
+}
+
+.back-to-books-container button:hover {
+  background-color: #1876d1;
 }

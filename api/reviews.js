@@ -5,8 +5,6 @@ import requireUser from "#middleware/requireUser";
 
 const router = express.Router();
 
-// still gotta test this code once frontend is working.
-
 router.delete("/:id", requireUser, async (req, res) => {
   try {
     if (!req.user) {

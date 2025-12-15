@@ -1,4 +1,4 @@
-import db from "#db/client";
+import db from "#db/client.js";
 
 export async function createReviews(item_id, user_id, rating, comment) {
   const sql = `

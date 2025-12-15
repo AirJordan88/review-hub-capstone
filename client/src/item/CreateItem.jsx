@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { apiRequest } from "../api/client";
-import "./CreateItem.css"; // <-- ADD THIS
+import "./CreateItem.css";
 
 export default function CreateItem() {
   const navigate = useNavigate();

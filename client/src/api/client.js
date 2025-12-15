@@ -9,7 +9,7 @@ export async function apiRequest(path, options = {}) {
     ...(options.headers || {}),
   };
 
-  // ✅ Defensive check: only attach token if it's actually valid
+  // Defensive check: only attach token if it's actually valid
   if (token && token !== "null" && token !== "undefined") {
     headers.Authorization = `Bearer ${token}`;
   }
@@ -28,7 +28,7 @@ export async function apiRequest(path, options = {}) {
     data = text; // for token responses or non-JSON errors
   }
 
-  // ✅ Centralized error handling
+  // Centralized error handling
   if (!res.ok) {
     throw new Error(data || "Request failed");
   }
