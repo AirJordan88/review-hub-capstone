@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import usersRouter from "#api/users";
-import itemsRouter from "#api/item";
-import commentsRouter from "#api/comments";
-import reviewRouter from "#api/reviews";
+import usersRouter from "#api/users.js";
+import itemsRouter from "#api/item.js";
+import commentsRouter from "#api/comments.js";
+import reviewRouter from "#api/reviews.js";
 
 import getUserFromToken from "#middleware/getUserFromToken";
 import handlePostgresErrors from "#middleware/handlePostgresErrors";
