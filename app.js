@@ -1,20 +1,22 @@
 import express from "express";
-const app = express();
-export default app;
-
-import usersRouter from "#api/users";
-import itemsRouter from "#api/item"; // <-- ADD THIS
-import commentsRouter from "#api/comments";
-import reviewRouter from "#api/reviews";
-import getUserFromToken from "#middleware/getUserFromToken";
-import handlePostgresErrors from "#middleware/handlePostgresErrors";
 import cors from "cors";
 import morgan from "morgan";
 
+import usersRouter from "#api/users";
+import itemsRouter from "#api/item";
+import commentsRouter from "#api/comments";
+import reviewRouter from "#api/reviews";
+
+import getUserFromToken from "#middleware/getUserFromToken";
+import handlePostgresErrors from "#middleware/handlePostgresErrors";
+
+const app = express();
+export default app;
+
+// CORS: allow Netlify URL in production, allow localhost in dev
 app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/ }));
 
 app.use(morgan("dev"));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,10 +24,11 @@ app.use(getUserFromToken);
 
 app.get("/", (req, res) => res.send("Hello, World!"));
 
-app.use("/users", usersRouter);
-app.use("/items", itemsRouter); // <-- ADD THIS
-app.use("/comments", commentsRouter);
-app.use("/reviews", reviewRouter); // <--- nb added this
+// ✅ Consistent API prefix
+app.use("/api/users", usersRouter);
+app.use("/api/items", itemsRouter);
+app.use("/api/comments", commentsRouter);
+app.use("/api/reviews", reviewRouter);
 
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {

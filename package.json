@@ -9,7 +9,7 @@
     "#utils/*": "./utils/*"
   },
   "scripts": {
-    "start": "vite-node --env-file=.env server.js",
+    "start": "node server.js",
     "dev": "vite-node --watch --env-file=.env server.js",
     "test": "vitest",
     "db:schema": "psql -U postgres -d review_hub -f db/schema.sql",
