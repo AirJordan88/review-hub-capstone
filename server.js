@@ -3,12 +3,18 @@ import db from "#db/client.js";
 
 const PORT = process.env.PORT ?? 3000;
 
-await db.connect();
+async function start() {
+  try {
+    await db.connect();
+    console.log("Database connected.");
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
-});
+    app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}...`);
+    });
+  } catch (err) {
+    console.error("Startup failed:", err);
+    process.exit(1);
+  }
+}
 
-import commentRoutes from "#api/comments/index.js";
-
-app.use("/api/comments", commentRoutes);
+start();
