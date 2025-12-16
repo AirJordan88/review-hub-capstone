@@ -1,7 +1,7 @@
 import express from "express";
 
-import { getReviewById, deleteReviewQuery } from "#db/queries/reviews";
-import requireUser from "#middleware/requireUser";
+import { getReviewById, deleteReviewQuery } from "#db/queries/reviews.js";
+import requireUser from "#middleware/requireUser.js";
 
 const router = express.Router();
 

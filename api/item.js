@@ -1,8 +1,8 @@
 import express from "express";
-import { getAllItems, getItemById, createItem } from "#db/queries/item";
-import { getReviewsByItem, createReviews } from "#db/queries/reviews";
-import requireBody from "#middleware/requireBody";
-import requireUser from "#middleware/requireUser";
+import { getAllItems, getItemById, createItem } from "#db/queries/item.js";
+import { getReviewsByItem, createReviews } from "#db/queries/reviews.js";
+import requireBody from "#middleware/requireBody.js";
+import requireUser from "#middleware/requireUser.js";
 
 const router = express.Router();
 
