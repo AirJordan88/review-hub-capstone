@@ -7,8 +7,8 @@ import itemsRouter from "#api/item.js";
 import commentsRouter from "#api/comments/index.js";
 import reviewRouter from "#api/reviews.js";
 
-import getUserFromToken from "#middleware/getUserFromToken";
-import handlePostgresErrors from "#middleware/handlePostgresErrors";
+import getUserFromToken from "#middleware/getUserFromToken.js";
+import handlePostgresErrors from "#middleware/handlePostgresErrors.js";
 
 const app = express();
 export default app;
