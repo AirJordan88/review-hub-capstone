@@ -6,14 +6,6 @@ const PORT = process.env.PORT ?? 3000;
 
 async function start() {
   try {
-    console.log("NODE_ENV =", process.env.NODE_ENV);
-    console.log("DATABASE_URL is set =", Boolean(process.env.DATABASE_URL));
-    if (process.env.DATABASE_URL) {
-      console.log(
-        "DATABASE_URL host =",
-        new URL(process.env.DATABASE_URL).host
-      );
-    }
     await db.connect();
     console.log("Database connected.");
 
