@@ -1,4 +1,4 @@
-import db from "#db/client";
+import db from "#db/client.js";
 
 // Get all comments for a review
 export const getCommentsForReview = async (reviewId) => {
