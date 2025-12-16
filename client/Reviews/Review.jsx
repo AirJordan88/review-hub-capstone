@@ -1,9 +1,15 @@
-const API = import.meta.env.VITE_API;
+const API = import.meta.env.VITE_API_URL ?? "http://localhost:3000/api";
 
-// fetches an array of reviews from the API
+// Fetches an array of reviews from the API for a given item
 export async function getReviews(id) {
   try {
     const response = await fetch(`${API}/items/${id}/reviews`);
+
+    if (!response.ok) {
+      console.error("Failed to fetch reviews, status:", response.status);
+      return [];
+    }
+
     const result = await response.json();
     return Array.isArray(result) ? result : [];
   } catch (error) {
@@ -12,11 +18,10 @@ export async function getReviews(id) {
   }
 }
 
-// Sends an new array to the API to be created
-
+// Sends a new review to the API to be created
 export async function createReview(token, id, review) {
   if (!token) {
-    throw Error("You must be signed in to create an activity.");
+    throw Error("You must be signed in to create a review.");
   }
 
   const response = await fetch(`${API}/items/${id}/reviews`, {
@@ -29,8 +34,8 @@ export async function createReview(token, id, review) {
   });
 
   if (!response.ok) {
-    const result = await response.json();
-    throw Error(result.message);
+    const result = await response.json().catch(() => ({}));
+    throw Error(result.message || "Failed to create review.");
   }
 
   return response.json();

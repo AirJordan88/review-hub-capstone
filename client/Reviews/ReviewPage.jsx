@@ -5,7 +5,7 @@ import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 import { useParams } from "react-router";
 
-const API = import.meta.env.VITE_API;
+const API = import.meta.env.VITE_API_URL ?? "http://localhost:3000/api";
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
