@@ -4,7 +4,7 @@ import morgan from "morgan";
 
 import usersRouter from "#api/users.js";
 import itemsRouter from "#api/item.js";
-import commentsRouter from "#api/comments.js";
+import commentsRouter from "#api/comments/index.js";
 import reviewRouter from "#api/reviews.js";
 
 import getUserFromToken from "#middleware/getUserFromToken";
